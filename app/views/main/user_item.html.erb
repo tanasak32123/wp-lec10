@@ -1,0 +1,30 @@
+<div class="container mt-4 mb-4">
+    <h1>Item</h1>
+    <table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Order</th>
+            <th scope="col">Name</th>
+            <th scope="col">Price</th>
+            <th scope="col">Stock</th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        <% @user_items.each do |item| %>
+            <tr>
+                <th scope="row"><%= @order %></th>
+                <td><%= item.name %></td>
+                <td><%= item.price %></td>
+                <td><%= item.stock %></td>
+                <td class="d-flex">
+                    <%= button_to "Edit", edit_item_path(item.id), method: :get %>&nbsp;&nbsp;&nbsp;
+                    <%= button_to "Delete", delete_item_path(item.id) , method: :delete %> 
+                </td>
+            </tr>
+            <% @order += 1 %>
+        <% end %>
+    </tbody>
+    </table>
+    <%= link_to "New item", new_user_item_path(@user.id) %>
+</div>
