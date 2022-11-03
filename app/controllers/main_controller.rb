@@ -25,6 +25,7 @@ class MainController < ApplicationController
 
   def shop
     if must_be_logged_in
+      @user_id = params[:id]
       @user_items = Item.where(user_id: params[:id])    
       @order = 1
     end
@@ -37,9 +38,9 @@ class MainController < ApplicationController
         item_left = item[0]["stock"].to_i - 1
         Inventory.create(price: item[0]["price"], user_id: session[:userId], item_id: params[:id])
         item.update(stock: item_left)
-        redirect_to :action => "shop"
+        redirect_to :action => "shop", :id => params[:user_id]
       else 
-        redirect_to :action => "shop", alert: "This item is out of order"
+        redirect_to :action => "shop", alert: "This item is out of order", :id => params[:user_id]
       end
     end
   end

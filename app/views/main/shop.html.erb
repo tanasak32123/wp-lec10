@@ -19,7 +19,7 @@
                 <td><%= item.stock %></td>
                 <td class="d-flex">
                     <% if item.stock > 0%>
-                        <%= button_to "Buy", main_buy_path(item.id) %> &nbsp;&nbsp;&nbsp;
+                        <%= button_to "Buy", main_buy_path(item.id, @user_id) %> &nbsp;&nbsp;&nbsp;
                     <% else %>
                         <p>out of order</p>
                     <% end %>
